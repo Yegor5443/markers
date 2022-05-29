@@ -1,0 +1,46 @@
+[
+  {
+    "United states": [
+      {
+        "2008": [
+          {
+            "athlete": "Michael Phelps",
+            "sport": "Swimming",
+            "gold": "8",
+            "silver": "0",
+            "bronze": "0"
+          },
+          {
+            "athlete": "Natalie Coughlin",
+            "sport": "Swimming",
+            "gold": "1",
+            "silver": "2",
+            "bronze": "3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Australia": [
+      {
+        "2008": [
+          {
+            "athlete": "Libby Lenton-Trickett",
+            "sport": "Swimming",
+            "gold": "2",
+            "silver": "1",
+            "bronze": "1"
+          },
+          {
+            "athlete": "Leisel Jones",
+            "sport": "Swimming",
+            "gold": "2",
+            "silver": "1",
+            "bronze": "0"
+          }
+        ]
+      }
+    ]
+  }
+]
