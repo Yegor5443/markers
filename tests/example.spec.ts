@@ -20,7 +20,7 @@ test.describe('Scenario 1', () => {
 
 });
 
-test.describe.only('Scenario 2', () => {
+test.describe('Scenario 2', () => {
   let basePage:BasePage;
 
   test.beforeEach(async ({ page }) => {
