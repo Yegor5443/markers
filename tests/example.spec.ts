@@ -1,7 +1,8 @@
-import { test, Page } from '@playwright/test';
+import {test, Page, expect} from '@playwright/test';
 import BasePage from '../src/pages/base.page'
 import OLYMPIC_GAMES from '../dataset/olimpicGames.json';
 import MARKERS from '../dataset/markers.json'
+import PIXELS from '../dataset/pixels.json'
 
 test.describe('Scenario 1', () => {
   let basePage:BasePage;
@@ -18,6 +19,14 @@ test.describe('Scenario 1', () => {
     });
   })
 
+  test(`Verify that marker exist on specific place`, async ({ page }) => {
+    let style = await page.locator('//span[text()=\'Virden (WIN)\']/ancestor::div[contains(@class,\'leaflet-marker-icon\')]')
+        .getAttribute('style');
+
+    let arrayForCompare = await basePage.parseStyleForPixels(style)
+    await basePage.compareArrays(arrayForCompare, PIXELS)
+
+  });
 });
 
 test.describe('Scenario 2', () => {
@@ -49,4 +58,16 @@ test.describe('Scenario 2', () => {
     });
   })
 
+  // TODO: This test Fails, needs to be updated rendering on DOM elements
+  test(`Verify that sorting is working properly.`, async ({ page }) => {
+    await basePage.selectGroup('United States');
+    await basePage.selectGroup('2008');
+    const arrayWithNonFilteredAthletes = await basePage.getListOfElementsByRow('athlete');
+
+    await basePage.clickOnHeaderCellByText('Athlete');
+    let arrayWithFilteredAthletes= await basePage.getListOfElementsByRow('athlete');
+    // In expect below I do verification that array before sort is different according to array after sort
+    expect(arrayWithNonFilteredAthletes).not.toBe(arrayWithFilteredAthletes);
+    await basePage.checkArrayIdFiltered(arrayWithFilteredAthletes)
+  });
 });
